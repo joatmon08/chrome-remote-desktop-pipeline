@@ -13,15 +13,17 @@ DevOpsDaysPHL | October 23, 2019
 
 ---
 
-### I don't want to carry two laptops.
+## The straw that broke the camel's (my) back...
 
-Can I put it on my tablet?
-
----
-
-### I ❤️ my development environment.
-
-It's better than yours.
 
 ---
 
+## "Bespoke" Development Environments
+
+---
+
+1. Build an immutable image of my desktop tools.
+1. Deploy to the region of my choice (or whatever is close).
+1. Travel lighter!
+
+---
