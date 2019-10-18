@@ -1,0 +1,55 @@
+version: 2
+
+defaults: &defaults
+  working_directory: /tmp/chrome-remote-desktop-pipeline
+  environment:
+    GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/key.json
+    TF_VAR_image: chrome-remote-desktop-debian-9-cf43ea4
+    TF_VAR_prefix: rosemary-remote
+
+jobs:
+
+  setup:
+    <<: *defaults
+    docker:
+      - image: joatmon08/circleci-hashistack
+    steps:
+      - checkout
+      - run:
+          name: set up credentials
+          command: make credentials
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - key.json
+            - .terraformrc
+
+  unit:
+    <<: *defaults
+    docker:
+      - image: joatmon08/circleci-hashistack
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Run some checks to ensure the infrastructure is ready to build
+          command: make unit
+
+workflows:
+  version: 2
+  image:
+    jobs:
+      - setup
+      - unit:
+          requires:
+            - setup
+          filters:
+            branches:
+              only: master
+      - build:
+          requires:
+            - unit
+          filters:
+            branches:
+              only: master
