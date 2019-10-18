@@ -47,9 +47,3 @@ workflows:
           filters:
             branches:
               only: master
-      - build:
-          requires:
-            - unit
-          filters:
-            branches:
-              only: master
