@@ -4,8 +4,6 @@ defaults: &defaults
   working_directory: /tmp/chrome-remote-desktop-pipeline
   environment:
     GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/key.json
-    TF_VAR_image: chrome-remote-desktop-debian-9-cf43ea4
-    TF_VAR_prefix: rosemary-remote
 
 jobs:
 
@@ -35,6 +33,33 @@ jobs:
       - run:
           name: Run some checks to ensure the infrastructure is ready to build
           command: make unit
+  
+  plan:
+    <<: *defaults
+    docker:
+      - image: joatmon08/circleci-hashistack
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Initialize
+          command: terraform init -backend-config=backend-dev
+      - run:
+          name: Plan
+          command: terraform plan
+
+  apply:
+    <<: *defaults
+    docker:
+      - image: joatmon08/circleci-hashistack
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Apply
+          command: terraform apply -auto-approve
 
 workflows:
   version: 2

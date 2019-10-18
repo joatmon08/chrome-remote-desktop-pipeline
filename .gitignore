@@ -2,7 +2,6 @@
 .terraform
 terraform.tfstate*
 
-backend.conf
 local.env
 crash.log
 

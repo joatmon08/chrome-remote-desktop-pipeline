@@ -1,0 +1,4 @@
+organization = "rosemarycorp"
+workspaces {
+  prefix = "chrome-remote-desktop"
+}
