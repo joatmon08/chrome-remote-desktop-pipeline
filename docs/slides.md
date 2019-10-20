@@ -11,19 +11,43 @@ DevOpsDaysPHL | October 23, 2019
 
 ## So...many...devices...
 
----
+<img src="images/devices.jpg" alt="A picture of 2 laptops, 1 phone, a tablet,
+and a microphone." width="600"/>
 
-## The straw that broke the camel's (my) back...
-
-
----
-
-## "Bespoke" Development Environments
+<small>#notsponsored</small>
 
 ---
 
-1. Build an immutable image of my desktop tools.
-1. Deploy to the region of my choice (or whatever is close).
-1. Travel lighter!
+## Why?
+
+Security (IP, PII)
+
+Developer Productivity
+
+I ❤️my dev machine.
 
 ---
+
+## Problems
+
+6.4 Mt of electronic waste [in the US in 2017](https://collections.unu.edu/eserv/UNU:6341/Global-E-waste_Monitor_2017__electronic_single_pages_.pdf)
+
+Time wasted in security
+
+My back
+
+---
+
+## It's a problem rooted in the physical.
+
+---
+
+## Solution
+
+Build an immutable image of my desktop tools.
+
+Deploy to the region of my choice.
+
+Run it on my tablet.
+
+Travel lighter.
