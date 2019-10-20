@@ -3,6 +3,9 @@ credentials:
 	@echo '  token = "${TFCLOUD_SERVICE_KEY}"' >> ${HOME}/.terraformrc
 	@echo '}' >> ${HOME}/.terraformrc
 
+remote-desktop:
+	bash scripts/crd.sh
+
 init:
 	terraform init -backend-config=backend/${INFRA_ENVIRONMENT}
 

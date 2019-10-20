@@ -32,8 +32,4 @@ resource "google_compute_instance" "default" {
   metadata = {
     sshKeys = "${var.crd_user}:${var.public_key}"
   }
-
-  provisioner "local-exec" {
-    command = "gcloud compute ssh --zone ${data.google_compute_zones.available.names[0]} ${var.crd_user}@${local.hostname} --command 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=\"${var.crd_code}\" --redirect-url=\"https://remotedesktop.google.com/_/oauthredirect\" --name=${local.hostname} --pin=${var.crd_pin}'"
-  }
 }
