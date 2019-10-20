@@ -19,7 +19,6 @@ jobs:
       - persist_to_workspace:
           root: /home/circleci
           paths:
-            - key.json
             - .terraformrc
 
   unit:
@@ -33,7 +32,19 @@ jobs:
       - run:
           name: Run some checks to ensure the infrastructure is ready to build
           command: make unit
-  
+
+  contract:
+    <<: *defaults
+    docker:
+      - image: joatmon08/circleci-hashistack
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Run some checks to ensure the workspace has correct variables
+          command: make contract
+
   plan:
     <<: *defaults
     docker:
@@ -44,7 +55,7 @@ jobs:
           at: /home/circleci
       - run:
           name: Initialize
-          command: terraform init -backend-config=backend-dev
+          command: make init
       - run:
           name: Plan
           command: terraform plan
@@ -72,3 +83,16 @@ workflows:
           filters:
             branches:
               only: master
+      - contract:
+          requires:
+            - unit
+          filters:
+            branches:
+              only: master
+      - plan:
+          requires:
+            - contract
+          filters:
+            branches:
+              only: master
+      
