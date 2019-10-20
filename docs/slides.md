@@ -24,13 +24,13 @@ Security (IP, PII)
 
 Developer Productivity
 
-I ❤️my dev machine.
+I ❤️ my dev machine.
 
 ---
 
-## Problems
+## It's a problem rooted in the physical.
 
-6.4 Mt of electronic waste [in the US in 2017](https://collections.unu.edu/eserv/UNU:6341/Global-E-waste_Monitor_2017__electronic_single_pages_.pdf)
+In 2017, 6.4 Mt of electronic waste [in the US](https://collections.unu.edu/eserv/UNU:6341/Global-E-waste_Monitor_2017__electronic_single_pages_.pdf)
 
 Time wasted in security
 
@@ -38,7 +38,7 @@ My back
 
 ---
 
-## It's a problem rooted in the physical.
+## "We can't just let changes go right to production without manual intervention."
 
 ---
 
@@ -51,3 +51,19 @@ Deploy to the region of my choice.
 Run it on my tablet.
 
 Travel lighter.
+
+---
+
+## Let's test the limits of continuous delivery.
+
+---
+
+## Sometimes, infrastructure is tough to CD.
+
+(Accrue tech debt in human intervention.)
+
+---
+
+## Try it anyway.
+
+Highlights the changes we consider "bespoke".
