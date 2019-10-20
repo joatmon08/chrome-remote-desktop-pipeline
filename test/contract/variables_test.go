@@ -77,7 +77,7 @@ func TestTFCloudWorkspaceHasVariables(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(variables.Items) != expected {
+	if len(variables.Items) < expected {
 		t.Errorf("Need to specify all variables, expected %d found %d", expected, len(variables.Items))
 	}
 }
