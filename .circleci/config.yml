@@ -19,6 +19,7 @@ jobs:
           root: /home/circleci
           paths:
             - .terraformrc
+            - key.json
 
   unit:
     <<: *defaults
