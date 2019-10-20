@@ -17,7 +17,7 @@ jobs:
           command: make credentials
       - run:
           name: set up service account keys
-          command: echo ${GCLOUD_SERVICE_KEY} > key.json
+          command: echo ${GCLOUD_SERVICE_KEY} > /home/circleci/key.json
       - persist_to_workspace:
           root: /home/circleci
           paths:
