@@ -69,6 +69,9 @@ jobs:
       - attach_workspace:
           at: /home/circleci
       - run:
+          name: Initialize
+          command: make init
+      - run:
           name: Apply
           command: terraform apply -auto-approve
 
@@ -95,4 +98,9 @@ workflows:
           filters:
             branches:
               only: master
-      
+      - apply:
+          requires:
+            - plan
+          filters:
+            branches:
+              only: master
