@@ -5,7 +5,6 @@ credentials:
 
 init:
 	terraform init -backend-config=backend
-	terraform workspace select dev
 
 unit:
 	go test ./test/unit/... -v
