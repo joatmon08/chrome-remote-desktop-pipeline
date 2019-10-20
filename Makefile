@@ -2,7 +2,7 @@ credentials:
 	@echo "credentials app.terraform.io {" >> ${HOME}/.terraformrc
 	@echo '  token = "${TFCLOUD_SERVICE_KEY}"' >> ${HOME}/.terraformrc
 	@echo '}' >> ${HOME}/.terraformrc
-	@echo ${GCLOUD_SERVICE_KEY} > key.json
+	@echo ${GCLOUD_SERVICE_KEY} > ${HOME}/key.json
 
 remote-desktop:
 	bash scripts/crd.sh
