@@ -1,16 +1,15 @@
 version: 2
 
 defaults: &defaults
+  docker:
+    - image: joatmon08/circleci-hashistack
   working_directory: /tmp/chrome-remote-desktop-pipeline
   environment:
     GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/key.json
 
 jobs:
-
   setup:
     <<: *defaults
-    docker:
-      - image: joatmon08/circleci-hashistack
     steps:
       - checkout
       - run:
@@ -23,8 +22,6 @@ jobs:
 
   unit:
     <<: *defaults
-    docker:
-      - image: joatmon08/circleci-hashistack
     steps:
       - checkout
       - attach_workspace:
@@ -35,42 +32,36 @@ jobs:
 
   contract:
     <<: *defaults
-    docker:
-      - image: joatmon08/circleci-hashistack
     steps:
       - checkout
       - attach_workspace:
           at: /home/circleci
       - run:
           name: Run some checks to ensure the workspace has correct variables
-          command: make contract
+          command: INFRA_ENVIRONMENT=dev make contract
 
   plan:
     <<: *defaults
-    docker:
-      - image: joatmon08/circleci-hashistack
     steps:
       - checkout
       - attach_workspace:
           at: /home/circleci
       - run:
           name: Initialize
-          command: make init
+          command: INFRA_ENVIRONMENT=dev make init
       - run:
           name: Plan
           command: terraform plan
 
   apply:
     <<: *defaults
-    docker:
-      - image: joatmon08/circleci-hashistack
     steps:
       - checkout
       - attach_workspace:
           at: /home/circleci
       - run:
           name: Initialize
-          command: make init
+          command: INFRA_ENVIRONMENT=dev make init
       - run:
           name: Apply
           command: terraform apply -auto-approve
@@ -101,6 +92,19 @@ workflows:
       - apply:
           requires:
             - plan
+          filters:
+            branches:
+              only: master
+      - approve-destroy:
+          type: approval
+          requires:
+            - apply
+          filters:
+            branches:
+              only: master
+      - destroy:
+          requires:
+            - approve-destroy
           filters:
             branches:
               only: master
