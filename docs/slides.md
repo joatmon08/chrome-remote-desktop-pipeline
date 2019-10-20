@@ -42,7 +42,7 @@ My back
 
 ---
 
-## Solution
+## A Test...
 
 Build an immutable image of my desktop tools.
 
@@ -58,12 +58,24 @@ Travel lighter.
 
 ---
 
-## Sometimes, infrastructure is tough to CD.
+## Conclusion
 
-(Accrue tech debt in human intervention.)
+Sometimes, infrastructure is tough to CD.
+
+Accrue tech debt in human intervention.
+
+Balance the bespoke vs. the immutable
 
 ---
 
-## Try it anyway.
+## Better ways of working, both in process and in the physical.
 
-Highlights the changes we consider "bespoke".
+--
+
+## Thank you!
+
+Rosemary Wang (she/her)
+
+Developer Advocate, HashiCorp
+
+@joatmon08
