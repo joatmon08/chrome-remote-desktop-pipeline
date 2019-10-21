@@ -1,15 +1,15 @@
 output "user" {
-  value = var.crd_user
+  value     = var.crd_user
   sensitive = true
 }
 
 output "crd_code" {
-  value = var.crd_code
+  value     = var.crd_code
   sensitive = true
 }
 
 output "crd_pin" {
-  value = var.crd_pin
+  value     = var.crd_pin
   sensitive = true
 }
 
