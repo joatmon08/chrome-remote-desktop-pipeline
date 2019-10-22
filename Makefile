@@ -6,6 +6,9 @@ credentials:
 remote-desktop:
 	bash scripts/crd.sh
 
+stop:
+	bash scripts/stop.sh
+
 init:
 	terraform init -backend-config=backend/${INFRA_ENVIRONMENT}
 

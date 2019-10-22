@@ -89,8 +89,31 @@ jobs:
           name: Apply
           command: terraform destroy --force
 
+  stop:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Initialize
+          command: INFRA_ENVIRONMENT=dev make init
+      - run:
+          name: Apply
+          command: make stop
+
 workflows:
   version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 0"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - stop
   remote-desktop:
     jobs:
       - setup
@@ -121,7 +144,7 @@ workflows:
       - approve-destroy:
           type: approval
           requires:
-            - apply
+            - plan
           filters:
             branches:
               only: master
