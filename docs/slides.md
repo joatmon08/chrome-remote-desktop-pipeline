@@ -100,24 +100,23 @@ TO DO: Figure out manual refresh token.
 
 ---
 
-## Conclusion
+## Conclusions
 
-Sometimes, infrastructure is tough to CD.
-
-Accrue tech debt in human intervention.
-
-Balance the bespoke vs. the immutable
+- Sometimes, infrastructure is tough to CD.
+- It's okay to accrue tech debt in human intervention.
+- ...but don't have manual approvals "just in case".
+- Balance the bespoke vs. the immutable.
 
 ---
 
 ## Better ways of working, both in process and in the physical.
 
---
+---
 
 ## Thank you!
 
 Rosemary Wang (she/her)
 
-Developer Advocate, HashiCorp
-
 @joatmon08
+
+Developer Advocate, HashiCorp
