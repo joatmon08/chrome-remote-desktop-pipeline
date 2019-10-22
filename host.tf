@@ -36,6 +36,4 @@ resource "google_compute_instance" "default" {
   metadata = {
     sshKeys = "${var.crd_user}:${var.public_key}"
   }
-
-  metadata_startup_script = "DISPLAY= /opt/google/chrome-remote-desktop/start-host --code=\"${var.crd_code}\" --redirect-url=\"https://remotedesktop.google.com/_/oauthredirect\" --name=${local.hostname} --pin=${var.crd_pin}"
 }
