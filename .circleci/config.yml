@@ -91,7 +91,7 @@ jobs:
 
 workflows:
   version: 2
-  image:
+  remote-desktop:
     jobs:
       - setup
       - unit:

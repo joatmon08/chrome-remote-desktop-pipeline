@@ -60,20 +60,43 @@ In 2017, 6.4 Mt of electronic waste [in the US](https://collections.unu.edu/eser
 
 ---
 
-Step 1: Build an immutable image of my desktop tools.
+## Step 1: Build an immutable image of my desktop tools.
 
 ---
 
 <img src="images/image_pipeline.png" alt="CircleCI pipeline with three stages,
 setup, unit, and build." width="1000"/>
 
----
-
-Step 2: Deploy to the region of my choice.
+TO DO: Security scanning.
 
 ---
 
-Step 3: Run it on my tablet and travel lighter.
+### Challenge: Find an automated remote desktop
+
+[Chrome Remote
+Desktop](https://cloud.google.com/solutions/chrome-desktop-remote-on-compute-engine)
+
+TO DO: Figure out manual refresh token. 
+
+---
+
+### Challenge: Bake my favorite IDE into the image.
+
+[Virtual Studio Code](https://code.visualstudio.com/docs/setup/linux)
+
+---
+
+### Challenge: Bake my favorite IDE plugins into the image.
+
+[Virtual Studio Code CLI Extension Management](https://code.visualstudio.com/docs/editor/extension-gallery#_command-line-extension-management)
+
+---
+
+## Step 2: Deploy to the region of my choice.
+
+---
+
+## Step 3: Run it on my tablet and travel lighter.
 
 ---
 
