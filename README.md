@@ -1,64 +1,30 @@
-# chrome-remote-desktop-automation
+# chrome-remote-desktop-pipeline
 
-Some automation to spin up a remote desktop development environment
-anywhere, any time. Using code, of course.
+A pipeline to deploy a Chrome Remote Desktop host
+based on a development environment.
+
+See [joatmon08/chrome-remote-desktop-image](https://github.com/joatmon08/chrome-remote-desktop-image) for the image used.
 
 ## Pre-Requisites
 
 - Terraform
 - Terraform Cloud
-- Vagrant
-- Packer
+- Google Cloud
+- CircleCI
 
 ## Usage
 
-1. Add variables to `local.env`.
-   ```
-   export TF_VAR_pgp_key=
-   export TF_VAR_project=
-   export TF_VAR_region=
-   export PASSPHRASE=
-   
-   export GCLOUD_ZONE=
+1. Make sure to create a Terraform Cloud workspace and add the variables
+   required in `variables.tf`.
 
-   export TF_VAR_crd_code=
-   export TF_VAR_crd_pin=
-   export TF_VAR_image=
-   export TF_VAR_crd_user=
-   export TF_VAR_public_key_file=
-   ```
-
-1. Create a `backend.conf` file with TF Cloud
-   organization and workspace.
-   ```
-   organization = "my-tf-org"
-   workspaces {
-     name = "my-workspace"
-   }
-   ```
-
-1. Create the service account user.
+1. Add the following to the CircleCI environment variables;
    ```shell
-   source local.env
-   make gcp-bootstrap
+   GCLOUD_SERVICE_KEY="json service account key"
+   SSH_PUBLIC_KEY="SSH public key for host"
+   TFCLOUD_SERVICE_KEY="API token for Terraform Cloud"
    ```
 
-1. Build the image.
-   ```shell
-   source local.env
-   make packer-build
-   ```
+## Caveat
 
-1. Update the variable file (`local.env`) with zone & image name.
-
-1. Get the OAuth token for the remote desktop setup.
-   - `make code-retrieve`
-   - Click through the browser, copy the URL with the `code=` in it.
-   - `make URL='<returned url>' code-parse`
-   - Copy the output and add it to `local.env` under `TF_VAR_crd_code`.
-
-1. Deploy.
-   ```shell
-   source local.env
-   make desktop-build
-   ```
+Run `make code-retrieve` to open a browser and retrieve a refresh token.
+You must do this before running the pipeline.
