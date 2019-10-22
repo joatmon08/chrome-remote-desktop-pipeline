@@ -21,7 +21,7 @@ code-retrieve:
 desktop-build:
 	terraform apply
 
-slides:
+slide:
 	(cd docs && npm run presentation)
 
 pages:
