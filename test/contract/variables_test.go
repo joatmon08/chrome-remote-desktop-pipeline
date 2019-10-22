@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"strings"
 	"testing"
 
 	tfc "github.com/hashicorp/go-tfe"
@@ -67,7 +68,7 @@ func TestTFCloudWorkspaceHasVariables(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	expected := 9
+	expected := 8
 
 	ctx := context.Background()
 	variables, err := cloud.Client.Variables.List(ctx, tfc.VariableListOptions{
@@ -79,5 +80,27 @@ func TestTFCloudWorkspaceHasVariables(t *testing.T) {
 	}
 	if len(variables.Items) < expected {
 		t.Errorf("Need to specify all variables, expected %d found %d", expected, len(variables.Items))
+	}
+}
+
+func TestTFShouldHaveOutputVariables(t *testing.T) {
+	expectedVariables := []string{
+		"project",
+		"user",
+		"crd_code",
+		"crd_pin",
+		"hostname",
+		"gcloud_zone",
+	}
+	data, err := ioutil.ReadFile("../../outputs.tf")
+	if err != nil {
+		t.Errorf("Could not find output file: %v", err)
+	}
+	outputs := string(data)
+
+	for _, v := range expectedVariables {
+		if !strings.Contains(outputs, v) {
+			t.Errorf("Expected %s to be in outputs, got %v", v, outputs)
+		}
 	}
 }

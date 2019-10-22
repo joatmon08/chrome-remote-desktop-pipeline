@@ -33,3 +33,10 @@ func TestGoogleCredentials(t *testing.T) {
 		t.Errorf("%s does not have content", filename)
 	}
 }
+
+func TestGoogleSSHPublicKey(t *testing.T) {
+	_, ok := os.LookupEnv("SSH_PUBLIC_KEY")
+	if !ok {
+		t.Errorf("%s is undefined", "SSH_PUBLIC_KEY")
+	}
+}
