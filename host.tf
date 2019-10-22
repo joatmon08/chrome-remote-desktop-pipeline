@@ -2,6 +2,10 @@ data "google_compute_zones" "available" {
   status = "UP"
 }
 
+data "google_compute_image" "crd_image" {
+  family  = "crd-debian-9"
+}
+
 locals {
   hostname = "${var.prefix}-${data.google_compute_zones.available.names[0]}"
 }
@@ -15,7 +19,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = var.image
+      image = data.google_compute_image.crd_image.self_link
     }
   }
 

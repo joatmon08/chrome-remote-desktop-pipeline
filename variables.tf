@@ -14,10 +14,6 @@ variable "prefix" {
   type = string
 }
 
-variable "image" {
-  type = string
-}
-
 variable "machine_type" {
   default = "n1-standard-1"
 }

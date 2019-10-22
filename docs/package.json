@@ -4,7 +4,7 @@
   "description": "Remote Desktop, Continuously Delivered",
   "main": "index.js",
   "scripts": {
-    "presentation": "reveal-md slides.md --theme theme/hashicorp.css",
+    "presentation": "reveal-md slides.md --theme theme/hashicorp.css -w",
     "generate": "reveal-md slides.md --theme theme/hashicorp.css --static ."
   },
   "repository": {

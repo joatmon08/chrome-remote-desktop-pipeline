@@ -28,33 +28,52 @@ I ❤️ my dev machine.
 
 ---
 
-## It's a problem rooted in the physical.
+## Physical isolation is better over logical.
+
+---
+
+### Right?
 
 In 2017, 6.4 Mt of electronic waste [in the US](https://collections.unu.edu/eserv/UNU:6341/Global-E-waste_Monitor_2017__electronic_single_pages_.pdf)
 
-Time wasted in security
-
-My back
+(>1 Million Elephants)
 
 ---
 
-## "We can't just let changes go right to production without manual intervention."
+### We don't trust logical isolation.
 
----
+- Why I can't just carry one laptop
 
-## A Test...
-
-Build an immutable image of my desktop tools.
-
-Deploy to the region of my choice.
-
-Run it on my tablet.
-
-Travel lighter.
+- Why we can't push to production without manual intervention
 
 ---
 
 ## Let's test the limits of continuous delivery.
+
+---
+
+1. Build an immutable image of my desktop tools.
+
+1. Deploy to the region of my choice.
+
+1. Run it on my tablet and travel lighter.
+
+---
+
+Step 1: Build an immutable image of my desktop tools.
+
+---
+
+<img src="images/image_pipeline.png" alt="CircleCI pipeline with three stages,
+setup, unit, and build." width="1000"/>
+
+---
+
+Step 2: Deploy to the region of my choice.
+
+---
+
+Step 3: Run it on my tablet and travel lighter.
 
 ---
 
