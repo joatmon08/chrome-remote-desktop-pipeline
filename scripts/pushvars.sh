@@ -1,10 +1,28 @@
-#!/bin/bash -x
+#!/bin/bash -
 
-tfh pushvars -svar credentials="$TF_VAR_credentials" \
-    -svar crd_code=${TF_VAR_crd_code} \
-    -svar crd_pin=${TF_VAR_crd_pin} \
-    -svar crd_user=${TF_VAR_crd_user} \
-    -svar public_key="${TF_VAR_public_key}" \
-		-svar project=${TF_VAR_project} \
-		-var prefix=${TF_VAR_prefix} \
-		-var region=${TF_VAR_region}
+while getopts 'l' opt; do
+    case $opt in
+        t) local=1 ;;
+        *) echo 'Error in command line parsing' >&2
+            exit 1
+    esac
+done
+shift "$(( OPTIND - 1 ))"
+
+export TFH_token=$(sed -n '/.*token = "\(.*\)"/s//\1/p' ${HOME}/.terraformrc)
+export TFH_org=$(sed -n '/.*organization = "\(.*\)"/s//\1/p' backend/${INFRA_ENVIRONMENT})
+export TFH_name=$(sed -n '/.*name = "\(.*\)"/s//\1/p' backend/${INFRA_ENVIRONMENT})
+
+if [[ "$local" -eq 1 ]]; then
+  tfh pushvars -overwrite credentials -svar credentials="$TF_VAR_credentials" \
+    -overwrite crd_code -svar crd_code=${TF_VAR_crd_code} \
+    -overwrite crd_pin -svar crd_pin=${TF_VAR_crd_pin} \
+    -overwrite crd_user -svar crd_user=${TF_VAR_crd_user} \
+    -overwrite public_key -svar public_key="${TF_VAR_public_key}" \
+    -overwrite project -svar project=${TF_VAR_project} \
+    -overwrite prefix -var prefix=${TF_VAR_prefix} \
+    -overwrite region -var region=${TF_VAR_region}
+else
+  tfh pushvars -overwrite crd_code -svar crd_code=${TF_VAR_crd_code} \
+    -overwrite region -var region=${TF_VAR_region}
+fi

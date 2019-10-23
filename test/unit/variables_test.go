@@ -40,3 +40,16 @@ func TestGoogleSSHPublicKey(t *testing.T) {
 		t.Errorf("%s is undefined", "SSH_PUBLIC_KEY")
 	}
 }
+
+func TestTFCloudOverrideVariables(t *testing.T) {
+	tfCloudVars := []string{
+		"TF_VAR_crd_code",
+		"TF_VAR_region",
+	}
+	for _, v := range tfCloudVars {
+		_, ok := os.LookupEnv(v)
+		if !ok {
+			t.Errorf("%s is undefined", v)
+		}
+	}
+}
