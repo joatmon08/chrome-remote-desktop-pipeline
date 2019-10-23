@@ -14,5 +14,8 @@ gcloud auth activate-service-account packer-builder@hc-da-test.iam.gserviceaccou
 sleep 60
 
 if [[ $(gcloud compute ssh --zone ${GCLOUD_ZONE} ${USER}@${HOSTNAME} --command "ps aux | grep \"[ch]rome-remote-desktop-host\"") ]]; then
+  echo "Already initialized"
+  exit 0
+else
   gcloud compute ssh --zone ${GCLOUD_ZONE} ${USER}@${HOSTNAME} --command "DISPLAY= /opt/google/chrome-remote-desktop/start-host --name=\"${HOSTNAME}\" --pin=\"${PIN}\" --code=\"${CODE}\" --redirect-url=\"https://remotedesktop.google.com/_/oauthredirect\""
 fi
