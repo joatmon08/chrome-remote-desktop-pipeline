@@ -117,7 +117,13 @@ workflows:
               only:
                 - master
     jobs:
-      - stop
+      - setup
+      - stop:
+          requires:
+            - setup
+          filters:
+            branches:
+              only: master
   remote-desktop:
     jobs:
       - setup
