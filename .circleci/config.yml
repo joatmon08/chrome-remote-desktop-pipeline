@@ -6,6 +6,7 @@ defaults: &defaults
   working_directory: /tmp/chrome-remote-desktop-pipeline
   environment:
     GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/key.json
+    KEY_FINGERPRINT: aede9c90744f2d2ba8aa78236a99a10b
 
 jobs:
   setup:
