@@ -4,8 +4,7 @@ terraform {
 }
 
 provider "google" {
-  version     = "~> 2.17"
+  version     = "~> 2.20"
   project     = var.project
   region      = var.region
-  credentials = var.credentials
 }

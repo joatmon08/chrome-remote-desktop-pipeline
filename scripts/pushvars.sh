@@ -20,7 +20,7 @@ export TFH_org=$(sed -n '/.*organization = "\(.*\)"/s//\1/p' backend/${INFRA_ENV
 export TFH_name=$(sed -n '/.*name = "\(.*\)"/s//\1/p' backend/${INFRA_ENVIRONMENT})
 
 if [[ "$local" -eq 1 ]]; then
-  tfh pushvars -overwrite credentials -svar credentials="$TF_VAR_credentials" \
+  tfh pushvars -overwrite credentials -senv-var GOOGLE_CREDENTIALS="$TF_VAR_credentials" \
     -overwrite crd_code -svar crd_code=${TF_VAR_crd_code} \
     -overwrite crd_pin -svar crd_pin=${TF_VAR_crd_pin} \
     -overwrite crd_user -svar crd_user=${TF_VAR_crd_user} \
