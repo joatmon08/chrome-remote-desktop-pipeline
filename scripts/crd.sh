@@ -10,7 +10,7 @@ echo $SSH_PUBLIC_KEY > ${HOME}/.ssh/google_compute_engine.pub
 chmod 0600 ${HOME}/.ssh/google_compute_engine.pub
 cp ${HOME}/.ssh/id_rsa_${KEY_FINGERPRINT} ${HOME}/.ssh/google_compute_engine
 gcloud config set project ${GCLOUD_PROJECT}
-gcloud auth activate-service-account packer-builder@${GCLOUD_PROJECT}.iam.gserviceaccount.com --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+gcloud auth activate-service-account terraform@${GCLOUD_PROJECT}.iam.gserviceaccount.com --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
 sleep 60
 
 if [[ $(gcloud compute ssh --zone ${GCLOUD_ZONE} ${USER}@${HOSTNAME} --command "ps aux | grep \"[ch]rome-remote-desktop-host\"") ]]; then
