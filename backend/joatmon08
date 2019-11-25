@@ -1,0 +1,4 @@
+organization = "joatmon08"
+workspaces {
+  name = "chrome-remote-desktop"
+}

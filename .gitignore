@@ -8,3 +8,6 @@ crash.log
 packer-builder.json
 
 node_modules/
+
+circleci
+circleci.pub

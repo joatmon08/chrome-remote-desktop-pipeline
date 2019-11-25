@@ -6,7 +6,8 @@ defaults: &defaults
   working_directory: /tmp/chrome-remote-desktop-pipeline
   environment:
     GOOGLE_APPLICATION_CREDENTIALS: /home/circleci/key.json
-    KEY_FINGERPRINT: aede9c90744f2d2ba8aa78236a99a10b
+    KEY_FINGERPRINT: 37b4ebf9245f06c2b1364c03a5a174aa
+    INFRA_ENVIRONMENT: joatmon08
 
 jobs:
   setup:
@@ -21,7 +22,7 @@ jobs:
           command: echo ${GCLOUD_SERVICE_KEY} > /home/circleci/key.json
       - run:
           name: push variables up to workspace
-          command: INFRA_ENVIRONMENT=dev make tfcloud-vars
+          command: make tfcloud-vars
       - persist_to_workspace:
           root: /home/circleci
           paths:
@@ -46,7 +47,7 @@ jobs:
           at: /home/circleci
       - run:
           name: Run some checks to ensure the workspace has correct variables
-          command: INFRA_ENVIRONMENT=dev make contract
+          command: make contract
 
   plan:
     <<: *defaults
@@ -56,7 +57,7 @@ jobs:
           at: /home/circleci
       - run:
           name: Initialize
-          command: INFRA_ENVIRONMENT=dev make init
+          command: make init
       - run:
           name: Plan
           command: terraform plan
@@ -66,13 +67,13 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "ae:de:9c:90:74:4f:2d:2b:a8:aa:78:23:6a:99:a1:0b"
+            - "37:b4:eb:f9:24:5f:06:c2:b1:36:4c:03:a5:a1:74:aa"
       - checkout
       - attach_workspace:
           at: /home/circleci
       - run:
           name: Initialize
-          command: INFRA_ENVIRONMENT=dev make init
+          command: make init
       - run:
           name: Apply
           command: terraform apply -auto-approve
@@ -88,7 +89,7 @@ jobs:
           at: /home/circleci
       - run:
           name: Initialize
-          command: INFRA_ENVIRONMENT=dev make init
+          command: make init
       - run:
           name: Apply
           command: terraform destroy --force
@@ -101,7 +102,7 @@ jobs:
           at: /home/circleci
       - run:
           name: Initialize
-          command: INFRA_ENVIRONMENT=dev make init
+          command: make init
       - run:
           name: Apply
           command: make stop

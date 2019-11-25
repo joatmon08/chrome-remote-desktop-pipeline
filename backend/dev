@@ -1,4 +1,0 @@
-organization = "rosemarycorp"
-workspaces {
-  name = "chrome-remote-desktop-dev"
-}
