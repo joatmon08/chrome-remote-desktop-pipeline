@@ -30,6 +30,5 @@ if [[ "$local" -eq 1 ]]; then
     -overwrite region -var region=${TF_VAR_region}
 else
   tfh pushvars -overwrite crd_code -svar crd_code=${TF_VAR_crd_code} \
-    -overwrite region -var region=${TF_VAR_region} \
-    -overwrite credentials -svar credentials=${GCLOUD_SERVICE_KEY}
+    -overwrite region -var region=${TF_VAR_region}
 fi

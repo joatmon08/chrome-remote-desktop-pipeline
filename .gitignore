@@ -5,7 +5,7 @@ terraform.tfstate*
 local.env
 crash.log
 
-packer-builder.json
+key-*.json
 
 node_modules/
 
